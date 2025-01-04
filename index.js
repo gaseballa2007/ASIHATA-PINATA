@@ -27,15 +27,18 @@ const { mongodb_connection_start, start_numrep_process, upload_to_mongodb, get_d
 const ownerNumber = ['94789123880']
 
 //===================SESSION-AUTH============================
-if (!fs.existsSync(__dirname + '/session/creds.json')) {
-if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-const sessdata = config.SESSION_ID.split("𝙰𝚂𝙸𝚃𝙷𝙰-𝙼𝙳=")[1];
-const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-filer.download((err, data) => {
-if(err) throw err
-fs.writeFile(__dirname + '/session/creds.json', data, () => {
-console.log("Session downloaded ✅")
-})})}
+if (!fs.existsSync(__dirname + '/Session/creds.json')) {
+    if(!config.SESSION_ID) return console.log('❎ SAHAS-MD - Please Add Your Session...')
+    const sessdata = config.SESSION_ID
+    const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
+    filer.download((err, data) => {
+        if(err) throw err
+        fs.writeFile(__dirname + '/Session/creds.json', data, () => {
+
+            console.log("✅ SAHAS-MD - Session Downloading...")
+        })
+    })
+}
 
 const express = require("express");
 const app = express();
